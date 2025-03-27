@@ -173,9 +173,6 @@ texture = ExtResource("2_yqjtg")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
-distance = -107.0
-
 [sub_resource type="Animation" id="Animation_lnu2h"]
 resource_name = "MovePlatform"
 length = 1.5
@@ -251,6 +248,9 @@ _data = {
 &"RESET": SubResource("Animation_p57ef")
 }
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
+distance = -107.0
+
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
@@ -270,6 +270,19 @@ text = "You collected 0 Coins"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="DeathCounter" type="Label" parent="GameManager"]
+offset_left = -49.0
+offset_top = -205.0
+offset_right = 22.0
+offset_bottom = -180.0
+theme_override_colors/font_color = Color(0.878431, 0.890196, 0.0431373, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.929412)
+theme_override_fonts/font = ExtResource("9_0tnpc")
+theme_override_font_sizes/font_size = 8
+text = "You died 0 times"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_lbhrr")
 format = 2
@@ -286,11 +299,6 @@ position = Vector2(-1, -6)
 zoom = Vector2(4, 4)
 limit_bottom = 100
 position_smoothing_enabled = true
-
-[node name="KillZone" parent="." instance=ExtResource("5_iywne")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
-shape = SubResource("WorldBoundaryShape2D_p57ef")
 
 [node name="Coins" type="Node" parent="."]
 
@@ -365,6 +373,11 @@ autoplay = "Move"
 
 [node name="Platform4" parent="Platforms" instance=ExtResource("3_lnu2h")]
 position = Vector2(586, -34)
+
+[node name="KillZone" parent="." instance=ExtResource("5_iywne")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape2D_p57ef")
 
 [node name="Enemy" parent="." instance=ExtResource("6_p57ef")]
 position = Vector2(249, -12)
